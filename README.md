@@ -3,7 +3,7 @@
 Preparing meals at home is an important part of household food behavior because it may be related to how families allocate their food spending. Households differ in how often they prepare dinner at home, how often they purchase food for home consumption, and how often they obtain food away from home. Examining these patterns can help identify whether more frequent home meal preparation is associated with differences in household food expenditures.
 This project uses the U.S. Department of Agriculture (USDA) FoodAPS data to examine the relationship between home dinner preparation and recorded household food spending. Because FoodAPS is observational survey data, the analysis focuses on association rather than claiming that preparing dinner at home causes food spending to increase or decrease. A basic linear regression model will be used on the full cleaned analysis dataset; no train/test split will be performed because the goal is to describe and quantify the linear relationship rather than build a predictive model for new households.
 
-# *Research Question: How is the frequency of preparing dinner at home associated with household food spending among U.S. households?*#
+*Research Question: How is the frequency of preparing dinner at home associated with household food spending among U.S. households?*
 
 The main explanatory variable is dinners_prepared_at_home (renamed from the original FoodAPS variable nmealshome), which records the number of times food was prepared for dinner at home during the past 7 days. The main outcome is total_food_spending, a project-created variable formed by combining food_at_home_spending (FAH) and food_away_from_home_spending (FAFH) for each household.
 
