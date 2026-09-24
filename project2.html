@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Telecom Customer Churn Prediction | Grace Aguegue</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f5f7fa;
+        }
+
+        header {
+            background-color: #1f4e79;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.1rem;
+        }
+
+        nav {
+            background-color: #163a5c;
+            text-align: center;
+            padding: 14px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 35px 20px;
+        }
+
+        section {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            color: #1f4e79;
+            border-bottom: 2px solid #1f4e79;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #163a5c;
+        }
+
+        .button {
+            display: inline-block;
+            background-color: #1f4e79;
+            color: white;
+            padding: 10px 18px;
+            margin: 8px 8px 8px 0;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: #163a5c;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #1f4e79;
+            color: white;
+        }
+
+        .highlight {
+            background-color: #eef5fb;
+            padding: 15px;
+            border-left: 4px solid #1f4e79;
+            margin: 15px 0;
+        }
+
+        footer {
+            background-color: #163a5c;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Telecom Customer Churn Prediction</h1>
+    <p>Machine Learning Classification Project</p>
+    <p>Grace Aguegue</p>
+</header>
+
+<nav>
+    <a href="index.html">Portfolio Home</a>
+    <a href="#problem">Problem</a>
+    <a href="#data">Data</a>
+    <a href="#models">Models</a>
+    <a href="#results">Results</a>
+    <a href="#interpretation">Interpretation</a>
+</nav>
+
+<div class="container">
+
+    <!-- 1. PROBLEM DEFINITION -->
+
+    <section id="problem">
+
+        <h2>1. Problem Definition</h2>
+
+        <p>
+            Customer churn occurs when a customer stops using a company's
+            services. For telecommunications companies, customer churn can
+            result in lost revenue and increased costs associated with
+            acquiring new customers.
+        </p>
+
+        <p>
+            The purpose of this project is to develop a machine-learning
+            model that predicts whether a telecommunications customer will
+            churn based on customer characteristics and service usage
+            information.
+        </p>
+
+        <h3>Prediction Question</h3>
+
+        <div class="highlight">
+            <strong>
+                Can customer characteristics and service usage patterns
+                be used to predict whether a telecommunications customer
+                will churn?
+            </strong>
+        </div>
+
+        <p>
+            The target variable is <strong>Churn</strong>. The target was
+            converted to 0 for no churn and 1 for churn. Because there are
+            two possible outcomes, this is a binary classification problem.
+        </p>
+
+    </section>
+
+
+    <!-- 2. BACKGROUND -->
+
+    <section>
+
+        <h2>2. Background and Context</h2>
+
+        <p>
+            Customer churn is an important issue in the telecommunications
+            industry because losing customers can directly affect company
+            revenue. Identifying customers who are likely to leave can help
+            telecommunications companies better understand customer behavior
+            and develop customer-retention strategies.
+        </p>
+
+        <p>
+            Machine learning provides methods for analyzing customer
+            information and identifying patterns that may help predict
+            whether a customer is likely to churn. Previous research has
+            applied classification techniques such as Logistic Regression,
+            decision trees, Random Forest, support vector machines, and
+            other machine-learning methods to telecommunications churn
+            prediction.
+        </p>
+
+        <p>
+            In this project, Logistic Regression and Random Forest are
+            compared to determine how well they identify customers who
+            may churn.
+        </p>
+
+    </section>
+
+
+    <!-- 3. DATA DESCRIPTION -->
+
+    <section id="data">
+
+        <h2>3. Data Description</h2>
+
+        <p>
+            The dataset contains information about
+            <strong>7,043 telecommunications customers</strong> and
+            <strong>24 variables</strong>. Each row represents one customer.
+        </p>
+
+        <p>
+            The variables include customer characteristics, account
+            information, service information, charges, service-usage
+            measures, and churn status.
+        </p>
+
+        <h3>Selected Predictor Variables</h3>
+
+        <ul>
+            <li>tenure</li>
+            <li>SeniorCitizen</li>
+            <li>ServiceCount</li>
+            <li>InternetScore</li>
+            <li>AvgServiceUsageScore</li>
+            <li>MonthlyCharges</li>
+        </ul>
+
+        <p>
+            The dataset used in this project is based on the IBM Telco
+            Customer Churn dataset. The version used for this analysis
+            also contains additional derived service-usage features.
+        </p>
+
+        <a class="button"
+           href="https://www.kaggle.com/blastchar/telco-customer-churn"
+           target="_blank">
+            View Original Dataset
+        </a>
+
+    </section>
+
+
+    <!-- 4. DATA UNDERSTANDING -->
+
+    <section>
+
+        <h2>4. Data Understanding and Exploration</h2>
+
+        <p>
+            The dataset was examined for duplicate records, missing values,
+            target-class distribution, numerical distributions, unusual
+            observations, and relationships among customer characteristics.
+        </p>
+
+        <p>
+            Of the 7,043 customers, 5,174 (73.46%) did not churn and
+            1,869 (26.54%) churned. This indicates that the target variable
+            is imbalanced.
+        </p>
+
+        <p>
+            Customer tenure ranges from 0 to 72, with an average of
+            approximately 32.37. Monthly charges average approximately
+            $64.81 and range from $18.25 to $118.75.
+        </p>
+
+        <div class="highlight">
+            Because the target classes are imbalanced, model performance
+            was evaluated using precision, recall, and F1-score in addition
+            to accuracy.
+        </div>
+
+    </section>
+
+
+    <!-- 5. DATA PREPARATION -->
+
+    <section>
+
+        <h2>5. Data Preparation and Feature Selection</h2>
+
+        <p>
+            The Churn target variable was converted from Yes/No values
+            to binary values, where 1 represents churn and 0 represents
+            no churn.
+        </p>
+
+        <p>
+            Missing numerical values were handled using median imputation.
+            The data were divided into an 80% training set and a 20%
+            testing set using a stratified train-test split.
+        </p>
+
+        <p>
+            To prevent data leakage, median values were calculated using
+            only the training data and then applied to the testing data.
+            The StandardScaler used for Logistic Regression was also fitted
+            only on the training data.
+        </p>
+
+    </section>
+
+
+    <!-- 6. MODELS -->
+
+    <section id="models">
+
+        <h2>6. Baseline and Model Development</h2>
+
+        <h3>Baseline Model</h3>
+
+        <p>
+            A baseline classifier that predicts the most common class was
+            created to provide a benchmark for evaluating the trained models.
+        </p>
+
+        <h3>Logistic Regression</h3>
+
+        <p>
+            Logistic Regression was selected because it is commonly used
+            for binary classification. Numerical predictors were standardized
+            before model training.
+        </p>
+
+        <h3>Random Forest</h3>
+
+        <p>
+            Random Forest was selected as the second classification model.
+            It combines multiple decision trees and can capture nonlinear
+            relationships and interactions among predictors.
+        </p>
+
+    </section>
+
+
+    <!-- 7. RESULTS -->
+
+    <section id="results">
+
+        <h2>7. Model Evaluation and Selection</h2>
+
+        <p>
+            The models were evaluated using accuracy, precision, recall,
+            and F1-score.
+        </p>
+
+        <table>
+
+            <tr>
+                <th>Model</th>
+                <th>Accuracy</th>
+                <th>Precision</th>
+                <th>Recall</th>
+                <th>F1-Score</th>
+            </tr>
+
+            <tr>
+                <td>Baseline</td>
+                <td>73.46%</td>
+                <td>0%</td>
+                <td>0%</td>
+                <td>0%</td>
+            </tr>
+
+            <tr>
+                <td>Logistic Regression</td>
+                <td>80.06%</td>
+                <td>67.82%</td>
+                <td>47.33%</td>
+                <td>55.75%</td>
+            </tr>
+
+            <tr>
+                <td>Random Forest</td>
+                <td>76.86%</td>
+                <td>58.57%</td>
+                <td>43.85%</td>
+                <td>50.15%</td>
+            </tr>
+
+        </table>
+
+        <p>
+            The baseline model achieved an accuracy of 73.46%, but its
+            precision, recall, and F1-score were zero because it predicted
+            only the majority class.
+        </p>
+
+        <p>
+            Logistic Regression performed better than Random Forest across
+            the evaluation metrics used in this analysis and was selected
+            as the final model.
+        </p>
+
+        <p>
+            However, Logistic Regression achieved a recall of only 47.33%.
+            This means that the model failed to identify more than half of
+            the customers who actually churned, leaving room for future
+            improvement.
+        </p>
+
+    </section>
+
+
+    <!-- 8. MODEL INTERPRETATION -->
+
+    <section id="interpretation">
+
+        <h2>8. Model Interpretation and Insights</h2>
+
+        <h3>Confusion Matrix</h3>
+
+        <p>
+            The Logistic Regression model correctly predicted 951 customers
+            who did not churn and 177 customers who did churn. It incorrectly
+            classified 84 non-churn customers as churn customers and failed
+            to identify 197 customers who actually churned.
+        </p>
+
+        <p>
+            The Random Forest model correctly predicted 919 customers who
+            did not churn and 164 customers who did churn. It incorrectly
+            classified 116 non-churn customers as churn customers and failed
+            to identify 210 customers who actually churned.
+        </p>
+
+        <p>
+            False negatives are particularly important because they represent
+            customers who actually churned but were predicted not to churn.
+            These customers could be missed by a customer-retention program.
+        </p>
+
+
+        <h3>Random Forest Feature Importance</h3>
+
+        <p>
+            The Random Forest model identified tenure as the most influential
+            predictor, with an importance of approximately 29.94%.
+            MonthlyCharges was the second most influential feature at
+            approximately 28.02%, followed by AvgServiceUsageScore at
+            approximately 26.34%.
+        </p>
+
+        <p>
+            InternetScore and ServiceCount contributed less to the model,
+            while SeniorCitizen had the lowest feature importance among
+            the selected predictors.
+        </p>
+
+
+        <h3>Logistic Regression Coefficients</h3>
+
+        <p>
+            The Logistic Regression results showed that InternetScore and
+            MonthlyCharges had positive coefficients, indicating an
+            association with higher predicted churn when the other included
+            variables were held constant.
+        </p>
+
+        <p>
+            Tenure had the largest negative coefficient, indicating that
+            longer customer tenure was associated with a lower predicted
+            likelihood of churn. ServiceCount also had a negative
+            coefficient.
+        </p>
+
+        <p>
+            These relationships represent predictive associations and
+            should not be interpreted as evidence that the variables cause
+            customer churn.
+        </p>
+
+    </section>
+
+
+    <!-- 9. LIMITATIONS -->
+
+    <section>
+
+        <h2>9. Limitations, Ethics, and Reflection</h2>
+
+        <p>
+            This analysis has several limitations. The machine-learning
+            models are based only on variables available in the dataset,
+            so other factors that may influence customer churn may not be
+            represented.
+        </p>
+
+        <p>
+            The target variable is imbalanced, with fewer churn customers
+            than non-churn customers. This can affect how effectively the
+            models identify customers from the smaller churn class.
+        </p>
+
+        <p>
+            Prediction errors can also have practical consequences. False
+            negatives may cause a company to miss customers who are at risk
+            of leaving, while false positives may result in unnecessary
+            retention efforts.
+        </p>
+
+        <p>
+            The model should therefore be considered a decision-support tool
+            rather than a system for making customer decisions automatically.
+            The results identify predictive relationships and do not establish
+            that any feature causes customer churn.
+        </p>
+
+    </section>
+
+
+    <!-- 10. CODE AND TRANSPARENCY -->
+
+    <section>
+
+        <h2>10. Code and Transparency</h2>
+
+        <p>
+            The complete Python code used for data preparation, exploratory
+            analysis, machine-learning model development, evaluation, and
+            interpretation is available in the Jupyter Notebook and GitHub
+            repository.
+        </p>
+
+        <a class="button"
+           href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project2.ipynb"
+           target="_blank">
+            View Jupyter Notebook
+        </a>
+
+        <a class="button"
+           href="https://github.com/gaguegue-glitch/data-science-portfolio"
+           target="_blank">
+            View GitHub Repository
+        </a>
+
+        <h3>AI Usage Disclosure</h3>
+
+        <p>
+            OpenAI ChatGPT (GPT-5.6 Sol) was used as a support tool during
+            this project. It was used to help organize the project workflow,
+            troubleshoot and explain Python code, explain machine-learning
+            concepts and evaluation metrics, and improve the clarity and
+            organization of written interpretations.
+        </p>
+
+        <p>
+            The machine-learning code was executed in the Jupyter Notebook,
+            and the resulting outputs, visualizations, and model-performance
+            results were reviewed before being included in the final project.
+        </p>
+
+        <h3>References</h3>
+
+        <p>
+            Ahmad, A. K., Jafar, A., & Aljoumaa, K. (2019).
+            Customer churn prediction in telecom using machine learning in
+            big data platform. <em>Journal of Big Data, 6</em>, Article 28.
+            https://doi.org/10.1186/s40537-019-0191-6
+        </p>
+
+        <p>
+            Huang, B., Kechadi, M. T., & Buckley, B. (2012).
+            Customer churn prediction in telecommunications.
+            <em>Expert Systems with Applications, 39</em>(1), 1414-1425.
+            https://doi.org/10.1016/j.eswa.2011.08.024
+        </p>
+
+        <p>
+            Sikri, A., Jameel, R., Idrees, S. M., & Kaur, H. (2024).
+            Enhancing customer retention in telecom industry with machine
+            learning driven churn prediction.
+            <em>Scientific Reports, 14</em>, Article 13097.
+            https://doi.org/10.1038/s41598-024-63750-0
+        </p>
+
+    </section>
+
+</div>
+
+
+<footer>
+    <p>Grace Aguegue | Data Science Portfolio</p>
+    <p><a href="index.html" style="color:white;">Return to Portfolio Home</a></p>
+</footer>
+
+</body>
+</html>
