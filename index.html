@@ -4,46 +4,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grace Aguegue | Professional Portfolio</title>
+
+    <title>Grace Aguegue | Data Science Portfolio</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f5f5f5;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
             color: #333;
-            line-height: 1.7;
+            background-color: #f5f7fa;
         }
 
         header {
-            background-color: #1f2937;
+            background-color: #1f4e79;
             color: white;
             text-align: center;
-            padding: 60px 20px;
+            padding: 55px 20px;
         }
 
         header h1 {
-            margin-bottom: 10px;
-            font-size: 40px;
+            margin: 0;
+            font-size: 2.5rem;
         }
 
         header p {
-            font-size: 18px;
+            margin-top: 10px;
+            font-size: 1.2rem;
         }
 
         nav {
-            background-color: white;
+            background-color: #163a5c;
             text-align: center;
-            padding: 18px;
+            padding: 14px;
             position: sticky;
             top: 0;
-            border-bottom: 1px solid #ddd;
+            z-index: 1000;
         }
 
         nav a {
-            margin: 0 18px;
+            color: white;
             text-decoration: none;
-            color: #1f2937;
+            margin: 0 15px;
             font-weight: bold;
         }
 
@@ -51,201 +57,365 @@
             text-decoration: underline;
         }
 
-        main {
-            max-width: 950px;
+        .container {
+            max-width: 1050px;
             margin: auto;
-            padding: 30px 20px;
+            padding: 35px 20px;
         }
 
         section {
-            background-color: white;
-            margin-bottom: 30px;
-            padding: 35px;
-            border-radius: 8px;
+            margin-bottom: 50px;
         }
 
         h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
+            color: #1f4e79;
+            border-bottom: 2px solid #1f4e79;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            color: #163a5c;
+        }
+
+        .card {
+            background-color: white;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .button {
             display: inline-block;
-            padding: 10px 18px;
-            margin: 5px 8px 5px 0;
-            background-color: #1f2937;
+            background-color: #1f4e79;
             color: white;
+            padding: 10px 18px;
+            margin: 8px 8px 8px 0;
             text-decoration: none;
             border-radius: 5px;
+            font-weight: bold;
         }
 
         .button:hover {
-            opacity: 0.85;
+            background-color: #163a5c;
         }
 
-        .project {
-            border: 1px solid #ddd;
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 20px;
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill {
+            background-color: #e8eef5;
+            padding: 8px 14px;
+            border-radius: 5px;
         }
 
         footer {
-            text-align: center;
-            padding: 30px;
-            background-color: #1f2937;
+            background-color: #163a5c;
             color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer a {
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
         }
     </style>
 </head>
 
+
 <body>
 
+    <!-- HEADER -->
+
     <header>
-        <h1>Grace Aguegue's Professional Portfolio</h1>
-        <p>Data Science | Analytics | Cybersecurity</p>
+        <h1>Grace Aguegue</h1>
+        <p>Data Science Portfolio</p>
     </header>
 
+
+    <!-- NAVIGATION -->
+
     <nav>
-        <a href="#about">About Me</a>
-        <a href="#resume">Resume</a>
+        <a href="#about">About</a>
         <a href="#projects">Projects</a>
-        <a href="#professional">LinkedIn</a>
+        <a href="#skills">Skills</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <main>
+
+    <div class="container">
+
+        <!-- ABOUT -->
 
         <section id="about">
+
             <h2>About Me</h2>
 
-            <p>
-                I am a motivated and detail-oriented Data Science student at
-                UNC Charlotte with a solid and expanding foundation in Python,
-                R, Java, Excel, and statistical analysis. I am focused on
-                enhancing the technical, analytical, and problem-solving skills
-                necessary for success in data-driven positions. My experience
-                as a U.S. Army Automated Logistical Specialist has instilled in
-                me discipline, precision, and operational awareness. My military
-                background has also reinforced my ability to manage complex
-                information effectively, maintain accurate documentation, and
-                streamline workflows in dynamic environments where accuracy and
-                efficiency are paramount.
-            </p>
-
-            <p>
-                During my service, I gained substantial experience with inventory
-                systems, recordkeeping processes, and structured data management.
-                These experiences equipped me with the skills to recognize patterns,
-                validate information, and facilitate decision-making through
-                organized reporting that is both reliable and insightful. This
-                background serves as a strong base for my transition into Data
-                Science and Analytics, where I apply the same commitment to focus,
-                accountability, and critical thinking in tasks such as data cleaning,
-                visualization, modeling, and interpretation.
-            </p>
-
-            <p>
-                In 2022, I enhanced my technical expertise by obtaining a
-                Cyber Security certification that expanded my knowledge of secure
-                systems, data protection measures, and risk assessment strategies.
-                This training strengthens my ability to handle sensitive information
-                responsibly while complementing my broader interest in developing
-                trustworthy analytical solutions.
-            </p>
-
-            <p>
-                I am dedicated to ongoing learning and professional development.
-                At present, I am engaged in various projects aimed at improving my
-                programming capabilities while exploring practical applications of
-                machine learning techniques, statistical methods, and data-based
-                problem-solving approaches. I thrive in environments that prioritize
-                curiosity, collaboration, and continuous improvement. I am enthusiastic
-                about contributing to teams dedicated to transforming raw data into
-                valuable insights that align with business objectives and enhance
-                operational effectiveness.
-            </p>
-        </section>
-
-        <section id="resume">
-            <h2>Resume</h2>
-
-            <p>
-                My resume provides additional information about my education,
-                professional experience, technical skills, certifications,
-                and projects.
-            </p>
-
-            <a class="button" href="Grace_Aguegue_resume.pdf" target="_blank">
-                View My Resume
-            </a>
-        </section>
-
-        <section id="projects">
-            <h2>Projects</h2>
-
-            <div class="project">
-                <h3>FoodAPS Household Food Spending Analysis</h3>
+            <div class="card">
 
                 <p>
-                    This project examines the relationship between the frequency
-                    of preparing dinner at home and household food spending among
-                    U.S. households.
+                    Welcome to my data science portfolio. This portfolio
+                    highlights projects completed as part of my data science
+                    studies and demonstrates my experience with Python,
+                    data analysis, data visualization, statistical analysis,
+                    and machine learning.
                 </p>
+
+                <p>
+                    My projects focus on using data to answer practical
+                    questions, identify patterns, build predictive models,
+                    and communicate results through clear analysis and
+                    visualization.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section id="projects">
+
+            <h2>Projects</h2>
+
+
+            <!-- PROJECT 1 -->
+
+            <div class="card">
+
+                <h3>
+                    Project 1: FoodAPS Household Food Spending Analysis
+                </h3>
 
                 <h4>Research Question</h4>
 
                 <p>
-                    <strong>
-                        How is the frequency of preparing dinner at home associated
-                        with household food spending among U.S. households?
-                    </strong>
+                    How is the frequency of preparing dinner at home
+                    associated with household food spending among U.S.
+                    households?
                 </p>
 
                 <h4>Project Overview</h4>
 
                 <p>
-                    The project uses data from the U.S. Department of Agriculture
-                    (USDA) National Household Food Acquisition and Purchase Survey
-                    (FoodAPS). Python was used for data acquisition, cleaning,
-                    preparation, visualization, correlation analysis, and linear
-                    regression.
+                    This project uses data from the USDA FoodAPS National
+                    Household Food Acquisition and Purchase Survey to examine
+                    the relationship between preparing dinner at home and
+                    household food spending.
                 </p>
 
                 <p>
-                    The complete analysis includes the problem definition, data
-                    description, data cleaning and preparation, visualizations
-                    and insights, storytelling and narrative, limitations,
-                    ethics and reflection, and code transparency.
+                    The analysis includes data preparation, data cleaning,
+                    exploratory data analysis, visualization, correlation
+                    analysis, and linear regression.
                 </p>
 
-                <a class="button" href="https://github.com/gaguegue-glitch/project1/blob/main/Project1.ipynb" target="_blank">
-                    View Jupyter Notebook
+                <a class="button"
+                   href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project1.ipynb"
+                   target="_blank">
+                    View Project 1 Notebook
                 </a>
 
-                <a class="button" href="README.md" target="_blank">
-                    View Project Documentation
-                </a>
             </div>
+
+
+            <!-- PROJECT 2 -->
+
+            <div class="card">
+
+                <h3>
+                    Project 2: Telecom Customer Churn Prediction
+                </h3>
+
+                <h4>Prediction Question</h4>
+
+                <p>
+                    Can customer characteristics and service usage patterns
+                    be used to predict whether a telecommunications customer
+                    will churn?
+                </p>
+
+                <h4>Project Overview</h4>
+
+                <p>
+                    This project develops and evaluates machine-learning
+                    models for predicting customer churn in the
+                    telecommunications industry.
+                </p>
+
+                <p>
+                    The dataset contains 7,043 telecommunications customers
+                    and includes customer characteristics, account
+                    information, service information, charges, and
+                    service-usage measures.
+                </p>
+
+                <p>
+                    A baseline classifier, Logistic Regression, and Random
+                    Forest were evaluated using accuracy, precision, recall,
+                    and F1-score. Confusion matrices, Random Forest feature
+                    importance, and Logistic Regression coefficients were
+                    also examined to interpret the models.
+                </p>
+
+                <p>
+                    Logistic Regression was selected as the final model. It
+                    achieved an accuracy of 80.06%, precision of 67.82%,
+                    recall of 47.33%, and an F1-score of 55.75%.
+                </p>
+
+                <a class="button"
+                   href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project2.ipynb"
+                   target="_blank">
+                    View Project 2 Notebook
+                </a>
+
+                <a class="button"
+                   href="https://www.kaggle.com/blastchar/telco-customer-churn"
+                   target="_blank">
+                    View Dataset
+                </a>
+
+            </div>
+
+
+            <!-- GITHUB REPOSITORY -->
+
+            <div class="card">
+
+                <h3>Project Code</h3>
+
+                <p>
+                    The complete Jupyter notebooks and project files are
+                    available in my GitHub repository.
+                </p>
+
+                <a class="button"
+                   href="https://github.com/gaguegue-glitch/data-science-portfolio"
+                   target="_blank">
+                    View GitHub Repository
+                </a>
+
+            </div>
+
         </section>
 
-        <section id="professional">
-            <h2>Professional Profile</h2>
 
-            <p>
-                Connect with me on LinkedIn to learn more about my professional
-                experience, education, skills, projects, and career development.
-            </p>
+        <!-- SKILLS -->
 
-            <a class="button" href="https://www.linkedin.com/in/grace-aguegue/" target="_blank"
-                rel="noopener noreferrer">
-                View My LinkedIn
-            </a>
+        <section id="skills">
+
+            <h2>Tools and Technologies</h2>
+
+            <div class="card">
+
+                <div class="skills">
+
+                    <span class="skill">Python</span>
+                    <span class="skill">Pandas</span>
+                    <span class="skill">NumPy</span>
+                    <span class="skill">Matplotlib</span>
+                    <span class="skill">Seaborn</span>
+                    <span class="skill">Scikit-learn</span>
+                    <span class="skill">Jupyter Notebook</span>
+                    <span class="skill">Machine Learning</span>
+                    <span class="skill">Data Visualization</span>
+                    <span class="skill">Git</span>
+                    <span class="skill">GitHub</span>
+
+                </div>
+
+            </div>
+
         </section>
 
-    </main>
+
+        <!-- RESUME -->
+
+        <section id="resume">
+
+            <h2>Resume</h2>
+
+            <div class="card">
+
+                <p>
+                    View my resume to learn more about my education,
+                    experience, and technical skills.
+                </p>
+
+                <a class="button"
+                   href="Grace_Aguegue_resume.pdf"
+                   target="_blank">
+                    View Resume
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section id="contact">
+
+            <h2>Professional Links</h2>
+
+            <div class="card">
+
+                <p>
+                    You can connect with me through LinkedIn or view my
+                    projects on GitHub.
+                </p>
+
+                <a class="button"
+                   href="https://www.linkedin.com/in/grace-aguegue/"
+                   target="_blank">
+                    LinkedIn
+                </a>
+
+                <a class="button"
+                   href="https://github.com/gaguegue-glitch"
+                   target="_blank">
+                    GitHub
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- FOOTER -->
 
     <footer>
-        <p>Grace Aguegue | Professional Portfolio</p>
+
+        <p>
+            Grace Aguegue | Data Science Portfolio
+        </p>
+
+        <p>
+            <a href="https://github.com/gaguegue-glitch/data-science-portfolio">
+                GitHub Repository
+            </a>
+        </p>
+
     </footer>
 
 </body>
