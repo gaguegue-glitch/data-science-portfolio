@@ -24,22 +24,30 @@
             background-color: #f5f7fa;
         }
 
+        /* =========================
+           HEADER
+        ========================== */
+
         header {
             background-color: #1f4e79;
             color: white;
             text-align: center;
-            padding: 55px 20px;
+            padding: 60px 20px;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
         }
 
         header p {
-            margin: 10px 0 0;
-            font-size: 1.2rem;
+            margin: 8px 0;
+            font-size: 1.15rem;
         }
+
+        /* =========================
+           NAVIGATION
+        ========================== */
 
         nav {
             background-color: #163a5c;
@@ -50,25 +58,83 @@
             z-index: 1000;
         }
 
-        nav a {
+        nav>a,
+        .dropbtn {
             color: white;
             text-decoration: none;
             margin: 0 15px;
             font-weight: bold;
+            font-size: 16px;
         }
 
-        nav a:hover {
+        nav>a:hover,
+        .dropbtn:hover {
             text-decoration: underline;
         }
 
+        /* =========================
+           PROJECT DROPDOWN
+        ========================== */
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            background: none;
+            border: none;
+            font-family: Arial, Helvetica, sans-serif;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            min-width: 310px;
+            background-color: white;
+            border-radius: 5px;
+            overflow: hidden;
+            text-align: left;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+            z-index: 2000;
+        }
+
+        .dropdown-content a {
+            color: #163a5c;
+            padding: 13px 16px;
+            display: block;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #eef5fb;
+        }
+
+        .dropdown-content.show {
+            display: block;
+        }
+
+        /* =========================
+           MAIN CONTENT
+        ========================== */
+
         .container {
-            max-width: 1050px;
+            max-width: 1100px;
             margin: auto;
-            padding: 35px 20px;
+            padding: 40px 20px;
         }
 
         section {
-            margin-bottom: 40px;
+            background-color: white;
+            padding: 32px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         h2 {
@@ -81,20 +147,50 @@
             color: #163a5c;
         }
 
-        .card {
-            background-color: white;
-            padding: 28px;
-            margin: 25px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        /* =========================
+           PROJECTS
+        ========================== */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 25px;
         }
+
+        .project-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            background-color: white;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-card h3 {
+            margin-top: 5px;
+        }
+
+        .project-number {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #666;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================== */
 
         .button {
             display: inline-block;
             background-color: #1f4e79;
             color: white;
-            padding: 10px 18px;
-            margin: 8px 8px 8px 0;
+            padding: 10px 17px;
+            margin: 8px 7px 8px 0;
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
@@ -104,44 +200,78 @@
             background-color: #163a5c;
         }
 
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        .button-secondary {
+            background-color: #555;
         }
 
-        .skill {
-            background-color: #eef5fb;
-            color: #163a5c;
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-weight: bold;
+        .button-secondary:hover {
+            background-color: #333;
         }
+
+        /* =========================
+           SKILLS
+        ========================== */
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .skill-box {
+            background-color: #eef5fb;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .skill-box h3 {
+            margin-top: 0;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
 
         footer {
             background-color: #163a5c;
             color: white;
             text-align: center;
             padding: 25px;
-            margin-top: 40px;
         }
 
-        footer a {
-            color: white;
+        footer p {
+            margin: 5px;
         }
 
-        @media (max-width: 700px) {
+        /* =========================
+           MOBILE
+        ========================== */
+
+        @media (max-width: 800px) {
+
             header h1 {
                 font-size: 2rem;
             }
 
-            nav a {
-                display: inline-block;
-                margin: 5px 8px;
+            .projects-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
             }
 
-            .card {
-                padding: 20px;
+            nav>a,
+            .dropbtn {
+                margin: 5px 8px;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                left: 50%;
+                transform: translateX(-50%);
+                min-width: 280px;
+            }
+
+            section {
+                padding: 22px;
             }
         }
     </style>
@@ -150,270 +280,438 @@
 
 <body>
 
-<header>
-    <h1>Grace Aguegue</h1>
-    <p>Data Science Portfolio</p>
-</header>
+
+    <!-- =========================
+     HEADER
+========================== -->
+
+    <header>
+
+        <h1>Grace Aguegue</h1>
+
+        <p>Data Science Portfolio</p>
+
+        <p>
+            Python | Data Analysis | Machine Learning | Statistical Modeling
+        </p>
+
+    </header>
 
 
-<nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#resume">Resume</a>
-    <a href="#contact">Contact</a>
-</nav>
+    <!-- =========================
+     NAVIGATION
+========================== -->
+
+    <nav>
+
+        <a href="#about">About</a>
 
 
-<div class="container">
+        <div class="dropdown">
 
-    <!-- ABOUT -->
+            <button class="dropbtn" onclick="toggleProjects(event)">
+                Projects ▼
+            </button>
 
-    <section id="about">
+            <div id="projectDropdown" class="dropdown-content">
 
-        <h2>About Me</h2>
+                <a href="Project1.html">
+                    Project 1: FoodAPS Analysis
+                </a>
 
-        <div class="card">
-
-            <p>
-                Welcome to my data science portfolio. This portfolio
-                highlights projects that demonstrate my experience with
-                data analysis, visualization, statistical modeling, and
-                machine learning using Python.
-            </p>
-
-            <p>
-                My projects focus on using data to answer real-world
-                questions, identify patterns, build predictive models,
-                and communicate results in a clear and meaningful way.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- PROJECTS -->
-
-    <section id="projects">
-
-        <h2>Projects</h2>
-
-
-        <!-- PROJECT 1 -->
-
-        <div class="card">
-
-            <h3>Project 1: FoodAPS Household Food Spending Analysis</h3>
-
-            <h4>Research Question</h4>
-
-            <p>
-                How does regularly preparing and eating meals at home
-                affect a family's physical health and monthly household
-                budget?
-            </p>
-
-            <h4>Project Overview</h4>
-
-            <p>
-                This project uses data from the USDA FoodAPS National
-                Household Food Acquisition and Purchase Survey to examine
-                household food behaviors and spending.
-            </p>
-
-            <p>
-                The analysis includes data preparation, cleaning, exploratory
-                data analysis, visualization, correlation analysis, and
-                linear regression.
-            </p>
-
-            <a class="button"
-               href="Project1.html">
-                View Full Project
-            </a>
-
-            <a class="button"
-               href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project1.ipynb"
-               target="_blank">
-                View Code
-            </a>
-
-        </div>
-
-
-        <!-- PROJECT 2 -->
-
-        <div class="card">
-
-            <h3>Project 2: Telecom Customer Churn Prediction</h3>
-
-            <h4>Prediction Question</h4>
-
-            <p>
-                Can customer characteristics and service usage patterns
-                be used to predict whether a telecommunications customer
-                will churn?
-            </p>
-
-            <h4>Project Overview</h4>
-
-            <p>
-                This project develops and evaluates machine-learning models
-                for predicting customer churn in the telecommunications
-                industry.
-            </p>
-
-            <p>
-                The dataset contains 7,043 telecommunications customers and
-                includes customer characteristics, account information,
-                service information, charges, and service-usage measures.
-            </p>
-
-            <p>
-                A baseline classifier, Logistic Regression, and Random Forest
-                were evaluated using accuracy, precision, recall, and F1-score.
-                Logistic Regression was selected as the final model.
-            </p>
-
-            <a class="button"
-               href="project2.html">
-                View Full Project
-            </a>
-
-            <a class="button"
-               href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project2.ipynb"
-               target="_blank">
-                View Code
-            </a>
-
-            <a class="button"
-               href="https://www.kaggle.com/blastchar/telco-customer-churn"
-               target="_blank">
-                View Dataset
-            </a>
-
-        </div>
-
-
-        <!-- GITHUB REPOSITORY -->
-
-        <div class="card">
-
-            <h3>Project Code</h3>
-
-            <p>
-                The Jupyter notebooks and project files used in this
-                portfolio are available in my GitHub repository.
-            </p>
-
-            <a class="button"
-               href="https://github.com/gaguegue-glitch/data-science-portfolio"
-               target="_blank">
-                View GitHub Repository
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- SKILLS -->
-
-    <section id="skills">
-
-        <h2>Skills</h2>
-
-        <div class="card">
-
-            <div class="skills">
-
-                <span class="skill">Python</span>
-                <span class="skill">Pandas</span>
-                <span class="skill">NumPy</span>
-                <span class="skill">Matplotlib</span>
-                <span class="skill">Seaborn</span>
-                <span class="skill">Scikit-learn</span>
-                <span class="skill">Jupyter Notebook</span>
-                <span class="skill">Data Cleaning</span>
-                <span class="skill">Data Visualization</span>
-                <span class="skill">Linear Regression</span>
-                <span class="skill">Logistic Regression</span>
-                <span class="skill">Random Forest</span>
-                <span class="skill">Machine Learning</span>
-                <span class="skill">Git</span>
-                <span class="skill">GitHub</span>
+                <a href="project2.html">
+                    Project 2: Telecom Churn Prediction
+                </a>
 
             </div>
 
         </div>
 
-    </section>
+
+        <a href="#skills">Skills</a>
+
+        <a href="#resume">Resume</a>
+
+        <a href="#contact">Contact</a>
+
+    </nav>
 
 
-    <!-- RESUME -->
+    <!-- =========================
+     MAIN CONTENT
+========================== -->
 
-    <section id="resume">
+    <div class="container">
 
-        <h2>Resume</h2>
 
-        <div class="card">
+        <!-- ABOUT -->
+
+        <section id="about">
+
+            <h2>About Me</h2>
 
             <p>
-                View my resume to learn more about my education,
-                professional experience, technical skills, and
-                qualifications.
+                Welcome to my data science portfolio. This portfolio highlights
+                projects completed as part of my data science coursework and
+                demonstrates my experience working with real-world datasets
+                using Python, statistical analysis, visualization, and
+                machine-learning techniques.
             </p>
 
-            <a class="button"
-               href="Grace_Aguegue_resume.pdf"
-               target="_blank">
+            <p>
+                My projects focus on transforming raw data into meaningful
+                information through data cleaning, exploratory data analysis,
+                statistical modeling, machine learning, visualization, and
+                interpretation.
+            </p>
+
+            <p>
+                The portfolio currently includes a household food-spending
+                analysis using USDA FoodAPS data and a telecommunications
+                customer-churn machine-learning project.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+         PROJECTS
+    ========================== -->
+
+        <section id="projects">
+
+            <h2>Projects</h2>
+
+            <p>
+                Select a project below to view the complete analysis,
+                methodology, results, interpretations, and supporting code.
+            </p>
+
+
+            <div class="projects-grid">
+
+
+                <!-- PROJECT 1 -->
+
+                <div class="project-card">
+
+                    <div class="project-number">
+                        PROJECT 1
+                    </div>
+
+                    <h3>
+                        FoodAPS Household Food Spending Analysis
+                    </h3>
+
+                    <p>
+                        This project examines the relationship between
+                        preparing dinner at home and household food spending
+                        using data from the USDA National Household Food
+                        Acquisition and Purchase Survey (FoodAPS).
+                    </p>
+
+                    <p>
+                        The project includes web data acquisition, data
+                        cleaning, merging, exploratory analysis, correlation,
+                        simple linear regression, multiple linear regression,
+                        and interpretation of the results.
+                    </p>
+
+                    <p>
+                        <strong>Tools:</strong>
+                        Python, Pandas, Matplotlib, Seaborn,
+                        Scikit-learn, BeautifulSoup
+                    </p>
+
+
+                    <a class="button" href="Project1.html">
+                        View Full Project
+                    </a>
+
+
+                    <a class="button button-secondary"
+                        href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project1.ipynb"
+                        target="_blank">
+                        View Code
+                    </a>
+
+                </div>
+
+
+                <!-- PROJECT 2 -->
+
+                <div class="project-card">
+
+                    <div class="project-number">
+                        PROJECT 2
+                    </div>
+
+                    <h3>
+                        Telecom Customer Churn Prediction
+                    </h3>
+
+                    <p>
+                        This machine-learning project predicts whether a
+                        telecommunications customer will churn using customer
+                        characteristics, service information, and usage
+                        patterns.
+                    </p>
+
+                    <p>
+                        The project includes exploratory data analysis,
+                        preprocessing, leakage prevention, baseline modeling,
+                        Logistic Regression, Random Forest, model evaluation,
+                        confusion matrices, feature importance, and model
+                        interpretation.
+                    </p>
+
+                    <p>
+                        <strong>Tools:</strong>
+                        Python, Pandas, Matplotlib, Seaborn,
+                        Scikit-learn
+                    </p>
+
+
+                    <a class="button" href="project2.html">
+                        View Full Project
+                    </a>
+
+
+                    <a class="button button-secondary"
+                        href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project%202.ipynb"
+                        target="_blank">
+                        View Code
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+         SKILLS
+    ========================== -->
+
+        <section id="skills">
+
+            <h2>Technical Skills</h2>
+
+
+            <div class="skills-grid">
+
+
+                <div class="skill-box">
+
+                    <h3>Programming</h3>
+
+                    <p>
+                        Python<br>
+                        SQL<br>
+                        R
+                    </p>
+
+                </div>
+
+
+                <div class="skill-box">
+
+                    <h3>Data Analysis</h3>
+
+                    <p>
+                        Pandas<br>
+                        NumPy<br>
+                        Data Cleaning<br>
+                        Exploratory Data Analysis<br>
+                        Feature Engineering
+                    </p>
+
+                </div>
+
+
+                <div class="skill-box">
+
+                    <h3>Machine Learning</h3>
+
+                    <p>
+                        Scikit-learn<br>
+                        Logistic Regression<br>
+                        Random Forest<br>
+                        Linear Regression<br>
+                        Model Evaluation
+                    </p>
+
+                </div>
+
+
+                <div class="skill-box">
+
+                    <h3>Visualization</h3>
+
+                    <p>
+                        Matplotlib<br>
+                        Seaborn<br>
+                        Statistical Visualization
+                    </p>
+
+                </div>
+
+
+                <div class="skill-box">
+
+                    <h3>Development Tools</h3>
+
+                    <p>
+                        Jupyter Notebook<br>
+                        Visual Studio Code<br>
+                        Git<br>
+                        GitHub
+                    </p>
+
+                </div>
+
+
+                <div class="skill-box">
+
+                    <h3>Data Science Methods</h3>
+
+                    <p>
+                        Statistical Analysis<br>
+                        Correlation Analysis<br>
+                        Classification<br>
+                        Regression<br>
+                        Model Interpretation
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+         RESUME
+    ========================== -->
+
+        <section id="resume">
+
+            <h2>Resume</h2>
+
+            <p>
+                My resume provides additional information about my education,
+                professional experience, technical skills, and qualifications.
+            </p>
+
+
+            <a class="button" href="Grace_Aguegue_resume.pdf" target="_blank">
                 View Resume
             </a>
 
-        </div>
-
-    </section>
+        </section>
 
 
-    <!-- CONTACT -->
+        <!-- =========================
+         GITHUB
+    ========================== -->
 
-    <section id="contact">
+        <section>
 
-        <h2>Contact & Professional Links</h2>
-
-        <div class="card">
+            <h2>GitHub</h2>
 
             <p>
-                You can view my projects and professional profile using
-                the links below.
+                The source code and Jupyter notebooks for my portfolio
+                projects are available in my GitHub repository.
             </p>
 
-            <a class="button"
-               href="https://github.com/gaguegue-glitch"
-               target="_blank">
-                GitHub
+
+            <a class="button" href="https://github.com/gaguegue-glitch/data-science-portfolio" target="_blank">
+                View GitHub Repository
             </a>
 
-            <a class="button"
-               href="https://www.linkedin.com/in/grace-aguegue/"
-               target="_blank">
+        </section>
+
+
+        <!-- =========================
+         CONTACT
+    ========================== -->
+
+        <section id="contact">
+
+            <h2>Contact</h2>
+
+            <p>
+                You can learn more about my professional background and
+                projects through LinkedIn and GitHub.
+            </p>
+
+
+            <a class="button" href="https://www.linkedin.com/in/grace-aguegue/" target="_blank">
                 LinkedIn
             </a>
 
-        </div>
 
-    </section>
+            <a class="button" href="https://github.com/gaguegue-glitch" target="_blank">
+                GitHub
+            </a>
 
-</div>
+        </section>
 
 
-<footer>
+    </div>
 
-    <p>&copy; 2026 Grace Aguegue | Data Science Portfolio</p>
 
-</footer>
+    <!-- =========================
+     FOOTER
+========================== -->
+
+    <footer>
+
+        <p>
+            Grace Aguegue | Data Science Portfolio
+        </p>
+
+        <p>
+            Project 1: FoodAPS Analysis |
+            Project 2: Telecom Customer Churn Prediction
+        </p>
+
+    </footer>
+
+
+    <!-- =========================
+     DROPDOWN JAVASCRIPT
+========================== -->
+
+    <script>
+
+        function toggleProjects(event) {
+
+            event.stopPropagation();
+
+            const dropdown =
+                document.getElementById("projectDropdown");
+
+            dropdown.classList.toggle("show");
+        }
+
+
+        document.addEventListener("click", function (event) {
+
+            const dropdown =
+                document.getElementById("projectDropdown");
+
+            if (dropdown.classList.contains("show")) {
+
+                dropdown.classList.remove("show");
+            }
+
+        });
+
+    </script>
 
 
 </body>
+
 </html>
