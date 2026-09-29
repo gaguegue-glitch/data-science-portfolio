@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FoodAPS Household Food Spending Analysis | Grace Aguegue</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background-color: #f5f7fa;
+    }
+
+    header {
+      background-color: #1f4e79;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.4rem;
+    }
+
+    header p {
+      margin: 8px 0;
+      font-size: 1.1rem;
+    }
+
+    nav {
+      background-color: #163a5c;
+      text-align: center;
+      padding: 14px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    section {
+      background-color: white;
+      padding: 28px;
+      margin-bottom: 28px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    h2 {
+      color: #1f4e79;
+      border-bottom: 2px solid #1f4e79;
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      color: #163a5c;
+      margin-top: 28px;
+    }
+
+    .highlight {
+      background-color: #eef5fb;
+      padding: 15px;
+      border-left: 4px solid #1f4e79;
+      margin: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 11px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #1f4e79;
+      color: white;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #1f4e79;
+      color: white;
+      padding: 10px 18px;
+      margin: 8px 8px 8px 0;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .button:hover {
+      background-color: #163a5c;
+    }
+
+    footer {
+      background-color: #163a5c;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    footer a {
+      color: white;
+    }
+
+    @media (max-width: 700px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 5px 8px;
+      }
+
+      section {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Project 1: FoodAPS Household Food Spending Analysis</h1>
+    <p>Data Analysis and Linear Regression Project</p>
+    <p>Grace Aguegue</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Portfolio Home</a>
+    <a href="#problem">Problem</a>
+    <a href="#data">Data</a>
+    <a href="#cleaning">Preparation</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#results">Results</a>
+    <a href="#limitations">Limitations</a>
+    <a href="#code">Code</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- PROBLEM DEFINITION -->
+
+    <section id="problem">
+
+      <h2>1. Problem Definition and Research Question</h2>
+
+      <p>
+        Preparing meals at home is an important part of household food
+        behavior. Families differ in how often they prepare dinner at
+        home and how much they spend on food. Looking at these patterns
+        can help us better understand the relationship between home meal
+        preparation and household food spending.
+      </p>
+
+      <p>
+        The purpose of this project is to examine whether the frequency
+        of preparing dinner at home is associated with household food
+        spending among U.S. households.
+      </p>
+
+      <h3>Research Question</h3>
+
+      <div class="highlight">
+        <strong>
+          How is the frequency of preparing dinner at home associated
+          with household food spending among U.S. households?
+        </strong>
+      </div>
+
+      <p>
+        This question may be useful for households, researchers, and
+        organizations interested in understanding household food behavior
+        and spending patterns.
+      </p>
+
+    </section>
+
+
+    <!-- DATA DESCRIPTION -->
+
+    <section id="data">
+
+      <h2>2. Data Description</h2>
+
+      <h3>Data Source</h3>
+
+      <p>
+        This project uses data from the U.S. Department of Agriculture
+        (USDA) National Household Food Acquisition and Purchase Survey
+        (FoodAPS).
+      </p>
+
+      <p>
+        FoodAPS provides information about foods acquired by U.S.
+        households, where the foods were obtained, how much was paid,
+        and selected household characteristics.
+      </p>
+
+      <h3>Web Data Acquisition</h3>
+
+      <p>
+        The FoodAPS data were obtained from the USDA Economic Research
+        Service website using web scraping. Python's requests library
+        was used to access the public FoodAPS webpage, and BeautifulSoup
+        was used to parse the page and locate the CSV data download.
+        The data files were then downloaded, extracted, and loaded into
+        pandas for analysis.
+      </p>
+
+      <h3>Datasets Used</h3>
+
+      <p>
+        Three FoodAPS datasets were selected for this project.
+      </p>
+
+      <ul>
+        <li>
+          <strong>Household dataset:</strong> Contains household
+          identifiers, dinner preparation information, household
+          size, income, and other household characteristics.
+        </li>
+
+        <li>
+          <strong>Food-at-Home Event dataset:</strong> Contains
+          food-at-home acquisition events and spending information.
+        </li>
+
+        <li>
+          <strong>Food-Away-from-Home Event dataset:</strong> Contains
+          food-away-from-home acquisition events and spending
+          information.
+        </li>
+      </ul>
+
+      <h3>Original Dataset Sizes</h3>
+
+      <table>
+        <tr>
+          <th>Dataset</th>
+          <th>Rows</th>
+          <th>Columns</th>
+        </tr>
+
+        <tr>
+          <td>Household</td>
+          <td>4,826</td>
+          <td>279</td>
+        </tr>
+
+        <tr>
+          <td>Food-at-Home Events</td>
+          <td>15,998</td>
+          <td>73</td>
+        </tr>
+
+        <tr>
+          <td>Food-Away-from-Home Events</td>
+          <td>39,120</td>
+          <td>82</td>
+        </tr>
+      </table>
+
+      <h3>Key Variables</h3>
+
+      <ul>
+        <li>Household ID</li>
+        <li>Number of dinners prepared at home</li>
+        <li>Household size</li>
+        <li>Monthly household income</li>
+        <li>Dinners eaten outside the home</li>
+        <li>Food-at-home spending</li>
+        <li>Food-away-from-home spending</li>
+        <li>Total food spending</li>
+      </ul>
+
+    </section>
+
+
+    <!-- CLEANING -->
+
+    <section id="cleaning">
+
+      <h2>3. Data Cleaning and Preparation</h2>
+
+      <p>
+        The three FoodAPS datasets required cleaning before analysis.
+        Only the variables needed for the research question were
+        selected.
+      </p>
+
+      <p>
+        The variables were renamed to make them easier to understand.
+        Special negative survey codes were treated as missing values so
+        that they would not be included as actual numeric observations.
+      </p>
+
+      <p>
+        Because the Food-at-Home and Food-Away-from-Home datasets contain
+        multiple food events for the same household, spending was first
+        aggregated by household ID.
+      </p>
+
+      <p>
+        The aggregated spending datasets were then merged with the
+        household dataset. The resulting merged dataset contained
+        <strong>4,826 households</strong>.
+      </p>
+
+      <h3>Feature Engineering</h3>
+
+      <p>
+        A new variable called <strong>total_food_spending</strong> was
+        created by adding Food-at-Home spending and Food-Away-from-Home
+        spending:
+      </p>
+
+      <div class="highlight">
+        Total Food Spending = Food-at-Home Spending +
+        Food-Away-from-Home Spending
+      </div>
+
+    </section>
+
+
+    <!-- ANALYSIS -->
+
+    <section id="analysis">
+
+      <h2>4. Visualization and Analysis</h2>
+
+      <h3>Descriptive Statistics</h3>
+
+      <p>
+        The descriptive statistics show that households prepared dinner
+        at home an average of approximately <strong>5.23 times</strong>,
+        while average recorded total food spending was approximately
+        <strong>$151.85</strong>.
+      </p>
+
+      <p>
+        There was considerable variation in food spending across
+        households, with some households reporting much higher spending
+        than others.
+      </p>
+
+      <h3>Distribution of Dinner Preparation</h3>
+
+      <p>
+        The histogram in the analysis showed that most households
+        reported preparing dinner at home several times during the
+        observation period, with observations concentrated around the
+        middle-to-upper portion of the distribution.
+      </p>
+
+      <p>
+        A relatively small number of households reported much higher
+        values. These high values should be interpreted according to
+        the FoodAPS coding definition for the variable.
+      </p>
+
+      <h3>Correlation Analysis</h3>
+
+      <p>
+        The correlation between dinner preparation and total food
+        spending was approximately <strong>0.03</strong>, indicating
+        very little linear relationship between the two variables.
+      </p>
+
+      <p>
+        Dinner preparation had a positive correlation with Food-at-Home
+        spending and a negative correlation with Food-Away-from-Home
+        spending.
+      </p>
+
+      <p>
+        Household size and income showed stronger positive relationships
+        with total food spending than dinner preparation frequency.
+      </p>
+
+    </section>
+
+
+    <!-- RESULTS -->
+
+    <section id="results">
+
+      <h2>5. Regression Results</h2>
+
+      <h3>Simple Linear Regression</h3>
+
+      <p>
+        A simple linear regression model was used to examine the
+        relationship between the number of dinners prepared at home
+        and total household food spending.
+      </p>
+
+      <table>
+        <tr>
+          <th>Measure</th>
+          <th>Result</th>
+        </tr>
+
+        <tr>
+          <td>Intercept</td>
+          <td>$143.03</td>
+        </tr>
+
+        <tr>
+          <td>Dinner Preparation Coefficient</td>
+          <td>+$1.69</td>
+        </tr>
+
+        <tr>
+          <td>R²</td>
+          <td>0.0011</td>
+        </tr>
+      </table>
+
+      <p>
+        The coefficient of approximately <strong>+$1.69</strong>
+        means that each additional dinner prepared at home was
+        associated with an estimated $1.69 increase in recorded
+        household food spending.
+      </p>
+
+      <p>
+        However, the R² value was approximately <strong>0.0011</strong>,
+        meaning that dinner preparation frequency alone explained only
+        about <strong>0.11%</strong> of the variation in total food
+        spending.
+      </p>
+
+      <div class="highlight">
+        Dinner preparation frequency by itself had very little ability
+        to explain differences in total household food spending.
+      </div>
+
+
+      <h3>Multiple Linear Regression</h3>
+
+      <p>
+        Because household food spending may also be related to household
+        size and income, a second regression model included these
+        variables along with dinner preparation frequency.
+      </p>
+
+      <table>
+        <tr>
+          <th>Variable</th>
+          <th>Coefficient</th>
+        </tr>
+
+        <tr>
+          <td>Intercept</td>
+          <td>$52.63</td>
+        </tr>
+
+        <tr>
+          <td>Number of Dinners Prepared at Home</td>
+          <td>-$0.97</td>
+        </tr>
+
+        <tr>
+          <td>Household Size</td>
+          <td>+$22.56</td>
+        </tr>
+
+        <tr>
+          <td>Monthly Household Income</td>
+          <td>+$0.0101 per dollar</td>
+        </tr>
+      </table>
+
+      <p>
+        The multiple regression had an R² of approximately
+        <strong>0.1873</strong>. This means that the variables included
+        in the model explained approximately <strong>18.73%</strong>
+        of the variation in recorded household food spending.
+      </p>
+
+      <p>
+        The change in the dinner-preparation coefficient between the
+        simple and multiple regression models suggests that household
+        characteristics such as household size and income are important
+        to consider when examining food spending.
+      </p>
+
+    </section>
+
+
+    <!-- STORY -->
+
+    <section>
+
+      <h2>6. Storytelling and Narrative</h2>
+
+      <p>
+        The results show that dinner preparation frequency alone has
+        very little linear relationship with total household food
+        spending. The correlation between the two variables was close
+        to zero, and the simple regression explained only about 0.11%
+        of the variation in food spending.
+      </p>
+
+      <p>
+        The analysis becomes more informative when household size and
+        income are considered. After adding these variables, the
+        regression model explained approximately 18.73% of the variation
+        in total food spending.
+      </p>
+
+      <div class="highlight">
+        These results suggest that household food spending is related
+        to multiple household characteristics rather than dinner
+        preparation frequency alone.
+      </div>
+
+      <p>
+        The analysis does not show that preparing dinner at home causes
+        food spending to increase or decrease. It only identifies
+        associations within the FoodAPS data.
+      </p>
+
+    </section>
+
+
+    <!-- LIMITATIONS -->
+
+    <section id="limitations">
+
+      <h2>7. Limitations, Ethics, and Reflection</h2>
+
+      <p>
+        FoodAPS is observational survey data, so the relationships found
+        in this project should not be interpreted as evidence of
+        causation.
+      </p>
+
+      <p>
+        Some variables contained missing responses or special survey
+        codes that had to be handled during data cleaning. Food spending
+        also varied considerably across households, and some households
+        had much higher recorded spending than others.
+      </p>
+
+      <p>
+        The regression models do not include every factor that may be
+        related to household food spending. Food prices, geographic
+        location, household composition, dietary preferences, and
+        access to food retailers may also affect spending.
+      </p>
+
+      <p>
+        The data were obtained from publicly available USDA FoodAPS
+        resources. The web acquisition process was limited to accessing
+        the public webpage and downloading the public-use data needed
+        for the analysis.
+      </p>
+
+      <p>
+        If this project were expanded, Food-at-Home and
+        Food-Away-from-Home spending could be examined separately and
+        additional household characteristics could be explored.
+      </p>
+
+    </section>
+
+
+    <!-- CODE -->
+
+    <section id="code">
+
+      <h2>8. Code and Transparency</h2>
+
+      <p>
+        The complete Python code used for data acquisition, cleaning,
+        analysis, visualization, and regression is available in the
+        Jupyter Notebook.
+      </p>
+
+      <a class="button" href="https://github.com/gaguegue-glitch/data-science-portfolio/blob/main/Project1.ipynb"
+        target="_blank">
+        View Jupyter Notebook
+      </a>
+
+      <a class="button" href="https://github.com/gaguegue-glitch/data-science-portfolio" target="_blank">
+        View GitHub Repository
+      </a>
+
+      <a class="button" href="index.html">
+        Return to Portfolio
+      </a>
+
+
+      <h3>Data Source</h3>
+
+      <p>
+        The data used in this project come from the U.S. Department of
+        Agriculture Economic Research Service National Household Food
+        Acquisition and Purchase Survey (FoodAPS).
+      </p>
+
+      <a class="button"
+        href="https://www.ers.usda.gov/data-products/foodaps-national-household-food-acquisition-and-purchase-survey"
+        target="_blank">
+        View USDA FoodAPS Data Source
+      </a>
+
+
+      <h3>AI Usage Disclosure</h3>
+
+      <p>
+        OpenAI ChatGPT (GPT-5.6 Sol) was used during this project to
+        assist with brainstorming, code troubleshooting, organizing the
+        analysis workflow, explaining statistical results, and improving
+        the clarity of written interpretations.
+      </p>
+
+      <p>
+        I reviewed the analysis, executed the Python code, examined the
+        results, and take responsibility for the final submitted work.
+      </p>
+
+
+      <h3>References</h3>
+
+      <p>
+        Page, E. T., Newman, C., Guthrie, J., & Mancino, L. (2019).
+        The National Household Food Acquisition and Purchase Survey:
+        Innovations and research insights.
+        <em>Applied Economic Perspectives and Policy, 41</em>(2),
+        215–234.
+        https://doi.org/10.1093/aepp/ppy034
+      </p>
+
+      <p>
+        Volpe, R., Cai, X., Tseng, M., Zeballos, E., & Sinclair, W.
+        (2022). Changes in the local food-at-home environment,
+        Supplemental Nutrition Assistance Program participation, and
+        dietary quality: Evidence from FoodAPS.
+        <em>Journal of the Agricultural and Applied Economics
+          Association, 1</em>, 151–164.
+        https://doi.org/10.1002/jaa2.19
+      </p>
+
+      <p>
+        Hillier, A., Smith, T. E., & Whiteman, E. D. (2017).
+        Discrete choice model of food store trips using National
+        Household Food Acquisition and Purchase Survey (FoodAPS).
+        <em>International Journal of Environmental Research and Public
+          Health, 14</em>(10), 1133.
+        https://doi.org/10.3390/ijerph14101133
+      </p>
+
+    </section>
+
+  </div>
+
+
+  <footer>
+    <p>Grace Aguegue | Data Science Portfolio</p>
+    <p><a href="index.html">Return to Portfolio Home</a></p>
+  </footer>
+
+</body>
+
+</html>
