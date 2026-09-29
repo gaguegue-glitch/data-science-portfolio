@@ -6,6 +6,6 @@
 _pycache__/ 
 *.html
 !index.html
-!project2.html
-!project1.html
+!Project2.html
+!Project1.html
 *.pyc   
